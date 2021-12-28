@@ -1,15 +1,18 @@
-import { store, wrapper } from "../redux/store/store";
-import { Provider } from "react-redux";
-import withRedux from "next-redux-wrapper";
+import "bootstrap/dist/css/bootstrap.min.css";
+import NavBar from "../components/navbar/navbar";
+import { wrapper } from "../redux/store/store";
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps, store }) {
+function MyApp({ Component, pageProps }) {
   return (
-    // <PersistGate loading={null} persistor={persistor}>
     // <Provider store={store}>
-    <Component {...pageProps} />
-    // </Provider>
-    // {/* </PersistGate> */}
+    //   <PersistGate persistor={persistor} loading={null}>
+    <NavBar>
+      <Component {...pageProps} />
+    </NavBar>
+
+    //   {/* </PersistGate>
+    // </Provider> */}
   );
 }
 
