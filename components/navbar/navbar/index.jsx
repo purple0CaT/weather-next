@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { Col, Container, Form, FormControl, Row } from "react-bootstrap";
-import style from "./Navbar.module.css";
-import OutsideClickHandler from "react-outside-click-handler";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { Col, Container, FormControl, Row } from "react-bootstrap";
 import { AiFillHome } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
-import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import OutsideClickHandler from "react-outside-click-handler";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addTheName,
   setCleanAll,
   setSearch,
 } from "../../../redux/actions/actions";
+import style from "./Navbar.module.css";
 import NavProf from "./NavProf";
 //
 const NavBar = (props) => {
@@ -19,8 +19,8 @@ const NavBar = (props) => {
   const [userName, setuserName] = useState("");
   const [DropDown, setDropDown] = useState(false);
   const dispatch = useDispatch();
-  const weather = useSelector((state) => state.weather);
   const user = useSelector((state) => state.user);
+  const weather = useSelector((state) => state.weather);
   //
   const closeDropdown = () => {
     setDropDown(false);
@@ -44,11 +44,16 @@ const NavBar = (props) => {
                   type="text"
                   placeholder="...search"
                   onChange={(e) => {
-                    dispatch(setSearch(e.target.value));
+                    // dispatch(setSearch(e.target.value));
+                    if (e.target.value.length > 0) {
+                      router.push(`/weather/${e.target.value}`);
+                    } else {
+                      router.push(`/`);
+                    }
                   }}
                   onKeyUp={(e) => {
                     if (e.key === "Enter") {
-                      router.push("/weather");
+                      router.push(`/weather/${weather.search}`);
                     }
                   }}
                 />

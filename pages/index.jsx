@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import MainPage from "../components/home/index";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
         <meta name="description" content="Weather application" />
       </Head>
       <div>
-        <h1>Home page</h1>
+        <MainPage />
       </div>
     </div>
   );

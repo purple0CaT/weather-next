@@ -1,0 +1,40 @@
+.imageWeather {
+  width: 100%;
+}
+.hoverCard {
+  position: relative;
+  transition: 0.15s !important;
+}
+.hoverCard:hover {
+  transform: scale(1.05);
+  z-index: 100;
+  border: 1px solid white !important;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.514);
+}
+.hoverCard:active {
+  transform: scale(1);
+  z-index: 100;
+  box-shadow: 0 0 25px rgba(128, 128, 128, 0.514);
+}
+.compass {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 1px solid grey;
+  background-color: rgba(127, 255, 212, 0.2);
+}
+.smallCard {
+  background-color: white;
+  margin: 0 0.2rem;
+  padding: 0.5rem;
+  min-width: 8rem !important;
+  border-radius: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+}
+.smallCard:hover {
+  text-decoration: none;
+}

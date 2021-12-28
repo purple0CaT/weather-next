@@ -1,12 +1,11 @@
 import { createWrapper } from "next-redux-wrapper";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
-import { localStorage } from "redux-persist";
+import { persistReducer, persistStore } from "redux-persist";
 import { encryptTransform } from "redux-persist-transform-encrypt";
+import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
 import { UserRed } from "../reducer/user";
 import { WeatherRed } from "../reducer/weather";
-import storage from "redux-persist/lib/storage";
 //
 export const initialState = {
   user: {
