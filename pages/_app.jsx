@@ -5,14 +5,9 @@ import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    // <Provider store={store}>
-    //   <PersistGate persistor={persistor} loading={null}>
     <NavBar>
       <Component {...pageProps} />
     </NavBar>
-
-    //   {/* </PersistGate>
-    // </Provider> */}
   );
 }
 

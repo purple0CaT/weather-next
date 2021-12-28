@@ -39,7 +39,6 @@ const makeStore = ({ isServer }) => {
     //If it's on server side, create a store
     return createStore(
       CombinedReducer,
-      // persistedReducer,
       initialState,
       composeEnhancers(applyMiddleware(thunk)),
     );
@@ -50,11 +49,12 @@ const makeStore = ({ isServer }) => {
       storage: storage,
       transforms: [
         encryptTransform({
-          secretKey: "asdasdasdasdasdaklmlkml",
+          secretKey: `${process.env.KEYENCRIPT}`,
           onError: function (error) {},
         }),
       ],
     };
+    //
     const persistedReducer = persistReducer(persistConfig, CombinedReducer);
     const store = createStore(
       persistedReducer,
@@ -62,6 +62,7 @@ const makeStore = ({ isServer }) => {
       composeEnhancers(applyMiddleware(thunk)),
     );
     store.__persisitor = persistStore(store);
+    //
     return store;
   }
 };
