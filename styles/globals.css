@@ -14,3 +14,31 @@ a {
 * {
   box-sizing: border-box;
 }
+.navBtn {
+  background-color: #aaaaaa;
+  border-radius: 15px;
+  padding: 0.3rem 1rem;
+  color: white;
+  transition: 0.1s;
+  height: 2rem;
+  border: unset;
+}
+
+.navBtn:hover {
+  background-color: #aaaaaa !important;
+  transform: scale(1.04) !important;
+  border-bottom: 3px solid rgb(102, 55, 55);
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.788);
+}
+.navBtn:active {
+  background-color: #aaaaaa !important;
+  transform: scale(1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9) !important;
+  border: 0px solid black;
+}
+
+/* ================= */
+/* required styles */

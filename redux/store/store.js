@@ -33,8 +33,8 @@ const CombinedReducer = combineReducers({
   weather: WeatherRed,
 });
 // Create store
-const makeStore = ({ isServer }) => {
-  if (isServer) {
+export const makeStore = (ctx) => {
+  if (ctx.isServer) {
     //If it's on server side, create a store
     return createStore(
       CombinedReducer,

@@ -108,8 +108,8 @@ const NavBar = (props) => {
                           style.profileName
                         }
                         onClick={() => setDropDown(!DropDown)}
-                        onMouseEnter={() => setDropDown(!DropDown)}
-                        onMouseOver={() => setDropDown(true)}
+                        // onMouseEnter={() => setDropDown(!DropDown)}
+                        // onMouseOver={() => setDropDown(true)}
                       >
                         <h5 className="my-0">{user.name}</h5>{" "}
                       </div>

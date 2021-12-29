@@ -1,8 +1,11 @@
+import { HYDRATE } from "next-redux-wrapper";
 import { initialState } from "../store/store";
 
 //
 export const WeatherRed = (state = initialState.weather, action) => {
   switch (action.type) {
+    case HYDRATE:
+      return { ...state, ...action.payload };
     case "SET_SEARCH":
       return {
         ...state,
