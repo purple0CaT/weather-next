@@ -33,8 +33,10 @@ const CombinedReducer = combineReducers({
   weather: WeatherRed,
 });
 // Create store
-export const makeStore = (ctx) => {
-  if (ctx.isServer) {
+export const makeStore = () => {
+  const isServer = typeof window === "undefined";
+
+  if (isServer) {
     //If it's on server side, create a store
     return createStore(
       CombinedReducer,
@@ -60,7 +62,7 @@ export const makeStore = (ctx) => {
       initialState,
       composeEnhancers(applyMiddleware(thunk)),
     );
-    store.__persisitor = persistStore(store);
+    store.__persistor = persistStore(store);
     //
     return store;
   }
