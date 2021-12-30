@@ -46,16 +46,14 @@ function SearchHistory() {
           <div>
             {weather.history &&
               weather.history.map((W) => (
-                <div>
-                  <div className="mx-auto">
-                    <Link
-                      href="/weather"
-                      onClick={() => dispatch(setSearch(W.name))}
-                      className=""
-                    >
-                      <h6>{W.name}</h6>
-                    </Link>
-                  </div>
+                <div className="mx-auto" key={W.name + "3s3"}>
+                  <Link
+                    href="/weather"
+                    onClick={() => dispatch(setSearch(W.name))}
+                    className=""
+                  >
+                    <h6>{W.name}</h6>
+                  </Link>
                 </div>
               ))}
           </div>

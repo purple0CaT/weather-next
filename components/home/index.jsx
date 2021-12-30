@@ -16,7 +16,12 @@ function MainPage() {
       <Row>
         {weather.history?.length > 0 ? (
           weather.history.map((W) => (
-            <Col xs="6" md="3" className="my-1" key={W.name}>
+            <Col
+              xs="6"
+              md="3"
+              className="my-1"
+              key={W.name + "asd"}
+            >
               <Link
                 passHref
                 href="/weather"

@@ -18,7 +18,7 @@ const IncomingDays = ({ data, multipData }) => {
               className={"d-flex flex-column " + style.smallCard}
               key={W.main.temp + W.dt}
             >
-              <div className="p-1">
+              <div className="p-1 d-flex flex-column">
                 <Image
                   src={`https://openweathermap.org/img/wn/${W.weather[0].icon}@2x.png`}
                   alt=""
@@ -44,7 +44,7 @@ const IncomingDays = ({ data, multipData }) => {
                 </small>
                 {/* WIND COL */}
                 <div className="d-flex aling-items-center w-100 mb-2">
-                  <small class="mt-auto">
+                  <small className="mt-auto">
                     <small className="text-muted font-weight-bold">
                       Wind:{" "}
                     </small>
@@ -66,7 +66,7 @@ const IncomingDays = ({ data, multipData }) => {
               </div>
 
               <div
-                className="d-flex justify-content-between mt-auto px-2 mb-1"
+                className="d-flex justify-content-between mt-auto px-2 mb-2"
                 style={{ backgroundColor: "rgba(128, 128, 128, 0.2)" }}
               >
                 <span>{dateFormat(new Date(W.dt * 1000), "d mmm")}</span>
