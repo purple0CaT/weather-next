@@ -13,9 +13,9 @@ function NavProf({ closeDropdown }) {
       <Link
         href="/profile"
         // activeClassName="selectedNavb"
-        onClick={() => closeDropdown()}
       >
         <div
+          onClick={() => closeDropdown()}
           className={
             "d-flex align-items-center  font-weight-bold my-1 " + style.navBtn
           }
@@ -23,10 +23,7 @@ function NavProf({ closeDropdown }) {
           <span className="text-dropdown">Profile</span>
         </div>
       </Link>
-      <Link
-        href="/"
-        // activeClassName="selectedNavb"
-      >
+      <Link href="/">
         <div
           onClick={() => {
             dispatch(logOut());

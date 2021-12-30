@@ -34,7 +34,7 @@ const Map = ({ lat, lon, profile }) => {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <Marker position={[lat, lon]} icon={getIcon(30)}></Marker>
-            {profile && <Circle center={[lat, lon]} radius={2000} />}
+            {/* {profile && <Circle center={[lat, lon]} radius={2000} />} */}
           </MapContainer>
         </div>
       )}

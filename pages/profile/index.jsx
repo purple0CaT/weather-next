@@ -5,7 +5,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import MyCord from "../../components/profile/MyCord";
 import SearchHistory from "../../components/profile/SearchHistory";
-import { wrapper } from "../../redux/store/store";
 //
 const MyProfile = () => {
   const user = useSelector((state) => state.user);

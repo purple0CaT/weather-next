@@ -15,12 +15,30 @@ import style from "./Navbar.module.css";
 import NavProf from "./NavProf";
 //
 const NavBar = (props) => {
-  const router = useRouter();
-  const [userName, setuserName] = useState("");
-  const [DropDown, setDropDown] = useState(false);
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const weather = useSelector((state) => state.weather);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [DropDown, setDropDown] = useState(false);
+  const [userName, setuserName] = useState("");
+  const [CityList, setCityList] = useState([]);
+  const [SearchQuery, setSearchQuery] = useState("");
+  // const weather = useSelector((state) => state.weather);
+  //
+  const cityList = async (value) => {
+    try {
+      const url = `http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=10&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (res.ok) {
+        setCityList(data);
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      alert("Error");
+      console.log(error);
+    }
+  };
   //
   const closeDropdown = () => {
     setDropDown(false);
@@ -40,23 +58,47 @@ const NavBar = (props) => {
               <div className={style.navSearch}>
                 <BsSearch className="mx-1" size="1.5rem" />
                 <FormControl
-                  // value={weather.search}
+                  value={SearchQuery}
                   type="text"
                   placeholder="...search"
                   onChange={(e) => {
-                    // dispatch(setSearch(e.target.value));
-                    if (e.target.value.length > 0) {
-                      router.push(`/weather/${e.target.value}`);
+                    setSearchQuery(e.target.value);
+                    if (e.target.value.length > 2) {
+                      cityList(e.target.value);
                     } else {
                       router.push(`/`);
                     }
                   }}
                   onKeyUp={(e) => {
                     if (e.key === "Enter") {
-                      router.push(`/weather/${weather.search}`);
+                      router.push(
+                        `/weather/${CityList[0].name},${CityList[0].state},${CityList[0].country}`,
+                      );
+                      setDropDown(false);
+                      setCityList([]);
+                      setSearchQuery(CityList[0].name);
                     }
                   }}
                 />
+                {SearchQuery && CityList.length > 0 && (
+                  <div className={style.searchList}>
+                    {CityList.map((City) => (
+                      <div
+                        className={style.searchListItem}
+                        onClick={() => {
+                          setDropDown(false);
+                          setCityList([]);
+                          setSearchQuery(City.name);
+                          router.push(
+                            `/weather/${City.name},${City.state},${City.country}`,
+                          );
+                        }}
+                      >
+                        {City.name}, {City.state}, {City.country}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </Col>
             <Col
@@ -68,14 +110,12 @@ const NavBar = (props) => {
               <Link
                 href="/"
                 // activeClassName="selectedNavb"
-                onClick={() => dispatch(setSearch(""))}
               >
                 <div
-                  className={
-                    "d-flex align-items-center  font-weight-bold mr-2" +
-                    " " +
-                    style.navBtn
-                  }
+                  onClick={() => setSearchQuery("")}
+                  className={`d-flex align-items-center  font-weight-bold mr-2 navBtn ${
+                    router.route === "/" && "selectedNavb"
+                  }`}
                 >
                   <span className="text-dropdown">Home</span>
                 </div>
@@ -101,15 +141,10 @@ const NavBar = (props) => {
                       }}
                     >
                       <div
-                        className={
-                          "d-flex align-items-center mr-2 " +
-                          style.navBtn +
-                          " " +
-                          style.profileName
-                        }
+                        className={`d-flex align-items-center  font-weight-bold mr-2 navBtn ${
+                          style.profileNam
+                        } ${router.route === "/profile" && "selectedNavb"}`}
                         onClick={() => setDropDown(!DropDown)}
-                        // onMouseEnter={() => setDropDown(!DropDown)}
-                        // onMouseOver={() => setDropDown(true)}
                       >
                         <h5 className="my-0">{user.name}</h5>{" "}
                       </div>

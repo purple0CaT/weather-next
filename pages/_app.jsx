@@ -8,11 +8,11 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }) {
   const store = useStore();
   return (
-    <NavBar>
-      <PersistGate persistor={store.__persistor}>
+    <PersistGate persistor={store.__persistor}>
+      <NavBar>
         <Component {...pageProps} />
-      </PersistGate>
-    </NavBar>
+      </NavBar>
+    </PersistGate>
   );
 }
 

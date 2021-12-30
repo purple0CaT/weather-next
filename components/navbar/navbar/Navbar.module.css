@@ -1,6 +1,6 @@
 .navContainer {
   background-color: rgba(192, 229, 229, 0.9);
-  box-shadow: 0 0 10px rgba(192, 192, 192, 0.582);
+  box-shadow: 0 3px 5px rgba(128, 128, 128, 0.274);
 }
 .navBar {
   padding: 0.2rem 0;
@@ -141,4 +141,23 @@
   border-left: 7rem solid transparent;
   border-right: 0px solid transparent;
   border-bottom: 8px solid white;
+}
+
+/* * Search city  */
+.searchList {
+  position: absolute;
+  top: 2.1rem;
+  left: 1 rem;
+  padding: 0.4rem 1rem;
+  border-radius: 10px;
+  background-color: #aaaaaa;
+}
+.searchListItem {
+  border-bottom: 1px solid rgb(218, 218, 218);
+  transition: 0.2s;
+  cursor: pointer;
+}
+.searchListItem:hover {
+  transform: scale(1.05);
+  /* font-weight: bold; */
 }

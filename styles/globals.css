@@ -39,6 +39,8 @@ a {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.9) !important;
   border: 0px solid black;
 }
-
+.selectedNavb {
+  border-bottom: 3px solid rgb(102, 55, 55);
+}
 /* ================= */
 /* required styles */
