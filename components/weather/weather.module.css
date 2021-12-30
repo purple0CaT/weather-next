@@ -1,0 +1,7 @@
+.mainCard {
+  border-radius: 20px;
+  background-color: rgb(182, 182, 182);
+  /* border: 1px solid rgba(117, 117, 117, 0.2); */
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(128, 128, 128, 0.329);
+}

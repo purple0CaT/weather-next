@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
-import { MapContainer, Popup, TileLayer, Marker, Circle } from "react-leaflet";
-import { useSelector } from "react-redux";
-import { wrapper } from "../../redux/store/store";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 //
 function getIcon(iconSize) {
   return L.icon({
@@ -15,19 +12,27 @@ function getIcon(iconSize) {
 }
 
 const Map = ({ lat, lon, profile }) => {
-  // console.log(profile);
+  const mapStyle = profile
+    ? {
+        width: "100%",
+        borderRadius: "20px",
+        overflow: "hidden",
+      }
+    : {
+        width: "100%",
+        borderRadius: "20px",
+        overflow: "hidden",
+        boxShadow: "0 2px 5px rgba(128, 128, 128, 0.329)",
+      };
   return (
     <>
       {lat && (
-        <div
-          className="position-relative"
-          style={{ minHeight: "20rem", minWidth: "20rem" }}
-        >
+        <div className="position-relative" style={mapStyle}>
           <MapContainer
             center={[lat, lon]}
             zoom={10}
             scrollWheelZoom={false}
-            style={{ width: "100%", height: "100%" }}
+            style={{ minWidth: "20vh", minHeight: "30vh" }}
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

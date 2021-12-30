@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteHistory, setSearch } from "../../redux/actions/actions";
 import style from "./profile.module.css";
 //
-const Map = dynamic(() => import("./Map"), {
+const Map = dynamic(() => import("../map/Map"), {
   ssr: false,
 });
 //

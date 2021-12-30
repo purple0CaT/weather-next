@@ -1,19 +1,24 @@
+import dateFormat from "dateformat";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { Col } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { Col, Row } from "react-bootstrap";
+import { FiNavigation2, FiSunrise, FiSunset } from "react-icons/fi";
+import style from "./weather.module.css";
+
+const Map = dynamic(() => import("../map/Map"), {
+  ssr: false,
+});
 //
-const MainCard = () => {
+const MainCard = ({ data }) => {
   const [WeatherImg, setWeatherImg] = useState({
     state: "",
     colorOne: "",
     colorTwo: "",
   });
-  const weather = useSelector((state) => state.weather);
-  const dispatch = useDispatch();
   //
   useEffect(() => {
-    if (weather.oneday?.weather) {
-      switch (weather.oneday.weather[0].main) {
+    if (data?.weather) {
+      switch (data.weather[0].main) {
         case "Clouds":
           setWeatherImg({
             state: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
@@ -65,117 +70,114 @@ const MainCard = () => {
           break;
       }
     }
-  }, [weather.oneday]);
-
-  //
-  //   useEffect(() => {
-  //     if (weather.search.length > 2) {
-  //       dispatch(runSearch());
-  //     }
-  //   }, [weather.search]);
+  }, [data]);
   return (
-    <>
-      {weather.loading && (
-        <div xs="12" md="7" className="my-1 p-1">
-          <div
-            className="d-flex justify-content-between mainCard p-2"
-            style={{
-              background: `linear-gradient(${WeatherImg.colorOne}, ${WeatherImg.colorTwo})`,
-            }}
-          >
-            {/* LEFT COLUMN */}
-            <div className="d-flex flex-column justify-content-between">
-              {/* first col */}
-              <div className="d-flex justify-content-between align-items-center">
-                <img
-                  src={`https://openweathermap.org/img/wn/${weather.oneday.weather[0].icon}@2x.png`}
-                  alt=""
-                  className="imageWeather"
-                />
-                <div className="d-flex flex-column text-left">
-                  <h2 className="text-muted">
-                    {Math.floor(weather.oneday.main.temp)}°C
-                  </h2>
+    <Row>
+      {data && (
+        <>
+          <Col xs="12" md="7" className="my-1 p-1">
+            <div
+              className={"d-flex justify-content-between p-2 " + style.mainCard}
+              style={{
+                background: `linear-gradient(${WeatherImg.colorOne}, ${WeatherImg.colorTwo})`,
+              }}
+            >
+              {/* LEFT COLUMN */}
+              <div className="d-flex flex-column justify-content-between">
+                {/* first col */}
+                <div className="d-flex justify-content-between align-items-center">
+                  <img
+                    src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+                    alt=""
+                    className="imageWeather"
+                  />
+                  <div className="d-flex flex-column text-left">
+                    <h2 className="text-muted">
+                      {Math.floor(data.main.temp)}°C
+                    </h2>
+                    <span>
+                      {data.weather[0].main}, {data.weather[0].description}
+                    </span>
+                  </div>
+                </div>
+                {/* MIN MAX COL*/}
+                <br />
+                <span>
+                  <small className="text-muted font-weight-bold">
+                    Feels like:
+                  </small>
+                  {Math.floor(data.main.feels_like)}°C
+                </span>
+                <span>
+                  <small className="text-muted font-weight-bold">
+                    Pressure:{" "}
+                  </small>
+                  {data.main.pressure} hPa
+                </span>
+                <div style={{ maxHeight: "5rem" }}>
+                  <span className="my-1">
+                    <small className="text-muted font-weight-bold">Min: </small>
+                    {Math.floor(data.main.temp_min)}°C
+                  </span>
                   <span>
-                    {weather.oneday.weather[0].main},{" "}
-                    {weather.oneday.weather[0].description}
+                    <small className="text-muted font-weight-bold ml-1">
+                      Max:{" "}
+                    </small>
+                    {Math.floor(data.main.temp_max)}°C
+                  </span>
+                </div>
+                {/* WIND COL */}
+                <div className="d-flex my-1">
+                  <span>
+                    <small className="text-muted font-weight-bold">
+                      Wind:{" "}
+                    </small>{" "}
+                    {data.wind.speed}m/s
+                  </span>
+                  <div className="compass">
+                    <FiNavigation2
+                      style={{
+                        transform: `rotate(${data.wind.deg}deg)`,
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+              {/* Cityy Column */}
+              <div className="text-right d-flex flex-column justify-content-between mr-md-3">
+                <div>
+                  <h1>{data.name}</h1>
+                  <span className="font-weight-bold text-muted">
+                    {data.sys.country}
+                  </span>
+                </div>
+                <div className="d-flex flex-column">
+                  <span className="text-white d-flex align-items-center justify-content-end my-1">
+                    <FiSunrise
+                      style={{ color: "yellow", marginRight: "0.5rem" }}
+                      size="1.5rem"
+                    />
+                    {dateFormat(new Date(data.sys.sunrise * 1000), "HH:MM")}
+                  </span>
+                  <span className="text-muted d-flex align-items-center justify-content-end my-1">
+                    <FiSunset
+                      style={{ color: "black", marginRight: "0.6rem" }}
+                      size="1.5rem"
+                    />
+                    {dateFormat(new Date(data.sys.sunset * 1000), "HH:MM")}
                   </span>
                 </div>
               </div>
-              {/* MIN MAX COL*/}
-              <br />
-              <span>
-                <small className="text-muted font-weight-bold">
-                  Feels like:
-                </small>
-                {Math.floor(weather.oneday.main.feels_like)}°C
-              </span>
-              <span>
-                <small className="text-muted font-weight-bold">
-                  Pressure:{" "}
-                </small>
-                {weather.oneday.main.pressure} hPa
-              </span>
-              <div style={{ maxHeight: "5rem" }}>
-                <span className="my-1">
-                  <small className="text-muted font-weight-bold">Min: </small>
-                  {Math.floor(weather.oneday.main.temp_min)}°C
-                </span>
-                <span>
-                  <small className="text-muted font-weight-bold">Max: </small>
-                  {Math.floor(weather.oneday.main.temp_max)}°C
-                </span>
-              </div>
-              {/* WIND COL */}
-              <div className="d-flex my-1">
-                <span>
-                  <small className="text-muted font-weight-bold">Wind: </small>{" "}
-                  {weather.oneday.wind.speed}m/s
-                </span>
-                <div className="compass">
-                  <FiNavigation2
-                    style={{
-                      transform: `rotate(${weather.oneday.wind.deg}deg)`,
-                    }}
-                  />
-                </div>
-              </div>
             </div>
-            {/* Cityy Column */}
-            <div className="text-right d-flex flex-column justify-content-between mr-md-3">
-              <div>
-                <h1>{weather.oneday.name}</h1>
-                <span className="font-weight-bold text-muted">
-                  {weather.oneday.sys.country}
-                </span>
-              </div>
-              <div className="d-flex flex-column">
-                <span className="text-white d-flex align-items-center justify-content-end my-1">
-                  <FiSunrise
-                    style={{ color: "yellow", marginRight: "0.5rem" }}
-                    size="1.5rem"
-                  />
-                  {dateFormat(
-                    new Date(weather.oneday.sys.sunrise * 1000),
-                    "HH:MM",
-                  )}
-                </span>
-                <span className="text-muted d-flex align-items-center justify-content-end my-1">
-                  <FiSunset
-                    style={{ color: "black", marginRight: "0.6rem" }}
-                    size="1.5rem"
-                  />
-                  {dateFormat(
-                    new Date(weather.oneday.sys.sunset * 1000),
-                    "HH:MM",
-                  )}
-                </span>
-              </div>
+          </Col>
+          <Col xs="12" md="5" className="w-100 h-100 p-2">
+            <div>
+              <Map lat={data.coord.lat} lon={data.coord.lon} />
             </div>
-          </div>
-        </div>
+          </Col>
+        </>
       )}
-    </>
+    </Row>
   );
 };
 

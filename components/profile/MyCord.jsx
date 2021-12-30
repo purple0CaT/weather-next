@@ -1,19 +1,15 @@
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import Link from "next/link";
-import { Col, Container, Row } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearCoord, setCoords } from "../../redux/actions/actions";
-import IpCard from "./SearchHistory";
 import styles from "./profile.module.css";
-
-const Map = dynamic(() => import("./Map"), {
+//
+const Map = dynamic(() => import("../map/Map"), {
   ssr: false,
 });
-
+//
 const MyCord = () => {
   const weathCoord = useSelector((state) => state.weather.mycord);
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   //
   const addCordinates = () => {
