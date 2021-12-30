@@ -9,11 +9,11 @@ export const fetchWeather = async ({ cityName }) => {
     //
     const urlForecast = `${process.env.NEXT_PUBLIC_WEATHERURL}/forecast?q=${cityName}&units=metric&exclude=daily&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
     const resFor = await fetch(urlForecast);
-    const dataFor = await resFor.json();
+    const multipData = await resFor.json();
     if (!resFor.ok) {
       throw Error("Error");
     }
-    return { data, dataFor };
+    return { data, multipData };
   } catch (error) {
     console.log(error);
   }

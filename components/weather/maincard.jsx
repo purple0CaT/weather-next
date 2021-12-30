@@ -1,5 +1,6 @@
 import dateFormat from "dateformat";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { FiNavigation2, FiSunrise, FiSunset } from "react-icons/fi";
@@ -86,10 +87,12 @@ const MainCard = ({ data }) => {
               <div className="d-flex flex-column justify-content-between">
                 {/* first col */}
                 <div className="d-flex justify-content-between align-items-center">
-                  <img
+                  <Image
                     src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
                     alt=""
                     className="imageWeather"
+                    height={100}
+                    width={100}
                   />
                   <div className="d-flex flex-column text-left">
                     <h2 className="text-muted">
@@ -114,18 +117,7 @@ const MainCard = ({ data }) => {
                   </small>
                   {data.main.pressure} hPa
                 </span>
-                <div style={{ maxHeight: "5rem" }}>
-                  <span className="my-1">
-                    <small className="text-muted font-weight-bold">Min: </small>
-                    {Math.floor(data.main.temp_min)}°C
-                  </span>
-                  <span>
-                    <small className="text-muted font-weight-bold ml-1">
-                      Max:{" "}
-                    </small>
-                    {Math.floor(data.main.temp_max)}°C
-                  </span>
-                </div>
+
                 {/* WIND COL */}
                 <div className="d-flex my-1">
                   <span>
@@ -134,7 +126,7 @@ const MainCard = ({ data }) => {
                     </small>{" "}
                     {data.wind.speed}m/s
                   </span>
-                  <div className="compass">
+                  <div className={style.compass}>
                     <FiNavigation2
                       style={{
                         transform: `rotate(${data.wind.deg}deg)`,
@@ -152,7 +144,10 @@ const MainCard = ({ data }) => {
                   </span>
                 </div>
                 <div className="d-flex flex-column">
-                  <span className="text-white d-flex align-items-center justify-content-end my-1">
+                  <span
+                    className="text-white d-flex align-items-center justify-content-end my-1"
+                    style={{ textShadow: "0 0 5px grey" }}
+                  >
                     <FiSunrise
                       style={{ color: "yellow", marginRight: "0.5rem" }}
                       size="1.5rem"

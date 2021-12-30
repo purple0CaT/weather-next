@@ -11,6 +11,7 @@ function NavProf({ closeDropdown }) {
       onMouseLeave={() => closeDropdown()}
     >
       <Link
+        passHref
         href="/profile"
         // activeClassName="selectedNavb"
       >

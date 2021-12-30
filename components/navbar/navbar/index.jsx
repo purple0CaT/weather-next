@@ -50,7 +50,7 @@ const NavBar = (props) => {
         <Container>
           <Row className={style.navBar}>
             <Col xs="6" md="4" className="d-flex align-items-center my-1">
-              <Link href="/" onClick={(x) => dispatch(setCleanAll())}>
+              <Link passHref href="/" onClick={(x) => dispatch(setCleanAll())}>
                 <div className={"mr-3 " + style.navIcon}>
                   <AiFillHome size="1.8rem" />
                 </div>
@@ -72,29 +72,29 @@ const NavBar = (props) => {
                   onKeyUp={(e) => {
                     if (e.key === "Enter") {
                       router.push(
-                        `/weather/${CityList[0].name},${CityList[0].state},${CityList[0].country}`,
+                        `/weather/${CityList[0].name},${CityList[0].country}`,
                       );
-                      setDropDown(false);
+                      setSearchQuery("");
                       setCityList([]);
+                      setDropDown(false);
                       setSearchQuery(CityList[0].name);
                     }
                   }}
                 />
                 {SearchQuery && CityList.length > 0 && (
                   <div className={style.searchList}>
-                    {CityList.map((City) => (
+                    {CityList.map((City, index) => (
                       <div
+                        key={City.lat + index}
                         className={style.searchListItem}
                         onClick={() => {
+                          router.push(`/weather/${City.name},${City.country}`);
                           setDropDown(false);
+                          setSearchQuery("");
                           setCityList([]);
-                          setSearchQuery(City.name);
-                          router.push(
-                            `/weather/${City.name},${City.state},${City.country}`,
-                          );
                         }}
                       >
-                        {City.name}, {City.state}, {City.country}
+                        {City.name}, {City.country}
                       </div>
                     ))}
                   </div>
@@ -107,10 +107,7 @@ const NavBar = (props) => {
               className="d-flex align-items-center justify-content-end my-1"
             >
               {" "}
-              <Link
-                href="/"
-                // activeClassName="selectedNavb"
-              >
+              <Link passHref href="/">
                 <div
                   onClick={() => setSearchQuery("")}
                   className={`d-flex align-items-center  font-weight-bold mr-2 navBtn ${

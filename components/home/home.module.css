@@ -1,5 +1,6 @@
 .imageWeather {
   width: 100%;
+  box-shadow: 0 0 5px grey;
 }
 .hoverCard {
   position: relative;

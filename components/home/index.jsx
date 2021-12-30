@@ -1,4 +1,5 @@
 import dateFormat from "dateformat";
+import Image from "next/image";
 import Link from "next/link";
 import { Col, Container, Row } from "react-bootstrap";
 import { FiNavigation2 } from "react-icons/fi";
@@ -15,8 +16,9 @@ function MainPage() {
       <Row>
         {weather.history?.length > 0 ? (
           weather.history.map((W) => (
-            <Col xs="6" md="3" className="my-1">
+            <Col xs="6" md="3" className="my-1" key={W.name}>
               <Link
+                passHref
                 href="/weather"
                 className={
                   "d-flex flex-column " +
@@ -32,10 +34,12 @@ function MainPage() {
                 }}
               >
                 <div>
-                  <img
+                  <Image
                     src={`https://openweathermap.org/img/wn/${W.weather[0].icon}@2x.png`}
                     alt={weather.description}
                     className={style.imageWeather}
+                    height={100}
+                    width={100}
                   />
                 </div>
                 <h5 className="m-0 text-muted">{W.name}</h5>

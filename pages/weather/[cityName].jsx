@@ -1,15 +1,14 @@
-import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Col, Container, Row } from "react-bootstrap";
 import MainCard from "../../components/weather/maincard";
 import { fetchWeather } from "./utility";
-
+import IncomingDays from "../../components//weather/incomingdays";
 //
 function CityWeather({ data }) {
   const router = useRouter();
-  console.log(router.query.cityName);
-  console.log(data.data);
+  // console.log(router.query.cityName);
+  // console.log(data);
   return (
     <>
       <Head>
@@ -21,7 +20,10 @@ function CityWeather({ data }) {
           <Col xs="12">
             <MainCard data={data.data} />{" "}
           </Col>
-          <Col xs="12">{/* <IncomingDays /> */}</Col>
+          <Col xs="12">
+            {" "}
+            <IncomingDays data={data.data} multipData={data.multipData} />{" "}
+          </Col>
         </Row>
       </Container>
     </>

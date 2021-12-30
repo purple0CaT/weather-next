@@ -28,7 +28,7 @@ const MyCord = () => {
       <div className={"p-1 my-1  text-center " + styles.profCard}>
         {weathCoord.latitude && (
           <>
-            <div className="my-2 w-50 mx-auto">
+            <div className="my-2 d-flex justify-content-center">
               <Link
                 href="/weather"
                 onClick={() =>
@@ -40,8 +40,8 @@ const MyCord = () => {
                   )
                 }
               >
-                <div className="navBtn d-block">
-                  <div>Check the weather near me</div>
+                <div className="navBtn">
+                  <span>Check the weather near me</span>
                 </div>
               </Link>
             </div>
@@ -52,24 +52,28 @@ const MyCord = () => {
                 profile={true}
               />
             </div>
-            <div className=" my-2">
-              <button
-                style={{ color: "Brown", backgroundColor: "whitesmoke" }}
+            <div className="my-2 d-flex align-items-center justify-content-center">
+              <div
+                style={{
+                  color: "Brown",
+                  backgroundColor: "whitesmoke",
+                  // width: "3rem",
+                }}
                 className="navBtn"
                 onClick={() => {
                   dispatch(clearCoord());
                 }}
               >
-                Delete my curent location
-              </button>
+                <span>Delete my curent location</span>
+              </div>
             </div>
           </>
         )}
         {!weathCoord.latitude && (
           <div className="my-2">
-            <button className="navBtn" onClick={() => addCordinates()}>
-              Add my curent loc
-            </button>
+            <div className="navBtn" onClick={() => addCordinates()}>
+              <span>Add my curent loc</span>
+            </div>
           </div>
         )}
       </div>

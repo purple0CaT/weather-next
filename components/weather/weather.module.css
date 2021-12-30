@@ -5,3 +5,34 @@
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(128, 128, 128, 0.329);
 }
+.mainCards {
+  border-radius: 20px;
+  box-shadow: 0 3px 7px rgb(190, 190, 190);
+  padding: 1rem;
+  background-color: rgba(224, 224, 224, 0);
+  overflow-x: scroll;
+  display: flex;
+}
+.smallCard {
+  background-color: white;
+  margin: 0 0.2rem;
+  /* padding: 0.5rem; */
+  min-width: 8rem !important;
+  border-radius: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.26);
+}
+.smallCard:hover {
+  text-decoration: none;
+}
+.compass {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  box-shadow: 0 0 4px grey;
+  /* border: 1px solid grey; */
+  background-color: #caeeee;
+}
