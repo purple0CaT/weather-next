@@ -1,4 +1,4 @@
-export const fetchWeather = async ({ cityName }) => {
+ export const fetchWeather = async ({ cityName }) => {
   try {
     const url = `${process.env.NEXT_PUBLIC_WEATHERURL}/weather?q=${cityName}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
     const res = await fetch(url);

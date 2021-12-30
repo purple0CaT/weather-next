@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { Col, Container, Row } from "react-bootstrap";
 import MainCard from "../../components/weather/maincard";
-import { fetchWeather } from "./utility";
+import { fetchWeather } from "../../utility/utility";
 import IncomingDays from "../../components//weather/incomingdays";
 //
 function CityWeather({ data }) {
