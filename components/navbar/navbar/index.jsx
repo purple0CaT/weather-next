@@ -26,7 +26,7 @@ const NavBar = (props) => {
   //
   const cityList = async (value) => {
     try {
-      const url = `http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=10&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
+      const url = `${process.env.NEXT_PUBLIC_GEOSEARCH}/direct?q=${value}&limit=10&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
       const res = await fetch(url);
       const data = await res.json();
       if (res.ok) {
