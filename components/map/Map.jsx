@@ -32,7 +32,7 @@ const Map = ({ lat, lon, profile }) => {
             center={[lat, lon]}
             zoom={10}
             scrollWheelZoom={false}
-            style={{ minWidth: "20vh", minHeight: "30vh" }}
+            style={{ minWidth: "20vh", minHeight: "27vh" }}
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
