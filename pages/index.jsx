@@ -20,9 +20,15 @@ export default function Home() {
         <meta name="description" content="Weather application" />
       </Head>
       <Container>
-        <h1 className="text-muted text-center mt-2">Weather near you</h1>
-
-        {WeatherData ? <MainCard data={WeatherData} /> : <Loader />}
+        {WeatherData ? (
+          <>
+            {" "}
+            <h1 className="text-muted text-center mt-2">Weather near you</h1>
+            <MainCard data={WeatherData} />
+          </>
+        ) : (
+          <Loader />
+        )}
       </Container>
       <div>
         <MainPage />
