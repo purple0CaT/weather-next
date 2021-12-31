@@ -21,19 +21,15 @@ export const fetchWeather = async ({ cityName }) => {
 
 export const fetchIpLocationWeather = async () => {
   try {
-    const url = "https://api.myip.com";
+    const url = "https://api.my-ip.io/ip.json";
     const resIp = await fetch(url);
     if (resIp.ok) {
       const apiData = await resIp.json();
-      // console.log(apiData);
       // fetch ipLocation
-      // const url2 = `http://api.ipstack.com/${apiData.ip}?access_key=${process.env.NEXT_PUBLIC_IPAPIKEY}`;
-      // const url2 = `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.NEXT_PUBLIC_IPAPIKEY}&ip=${apiData.ip}`;
       const url2 = `https://ipwhois.app/json/${apiData.ip}`;
       const resLocation = await fetch(url2);
       if (resLocation.ok) {
         const dataLocation = await resLocation.json();
-        // console.log(dataLocation);
         // fetch Weather
         const weatherUrl = `${process.env.NEXT_PUBLIC_WEATHERURL}/weather?lat=${dataLocation.latitude}&lon=${dataLocation.longitude}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
         const fetchWeather = await fetch(weatherUrl);
