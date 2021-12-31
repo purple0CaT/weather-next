@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import Link from "next/link";
-import style from "./Navbar.module.css";
+import style from "../../../styles/navbar.module.scss";
 import { clearCoord, logOut } from "../../../redux/actions/actions";
 
 function NavProf({ closeDropdown }) {

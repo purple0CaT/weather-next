@@ -99,7 +99,7 @@ function MainPage() {
           ))
         ) : (
           <div className="text-center w-100">
-            <h1 className="text-muted">Search city</h1>
+            {/* <h1 className="text-muted">Search city</h1> */}
           </div>
         )}
       </Row>

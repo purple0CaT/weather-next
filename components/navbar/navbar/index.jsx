@@ -11,7 +11,7 @@ import {
   setCleanAll,
   setSearch,
 } from "../../../redux/actions/actions";
-import style from "./Navbar.module.css";
+import style from "../../../styles/navbar.module.scss";
 import NavProf from "./NavProf";
 //
 const NavBar = (props) => {
@@ -22,11 +22,10 @@ const NavBar = (props) => {
   const [userName, setuserName] = useState("");
   const [CityList, setCityList] = useState([]);
   const [SearchQuery, setSearchQuery] = useState("");
-  // const weather = useSelector((state) => state.weather);
   //
-  const cityList = async (value) => {
+  const fetchCityList = async () => {
     try {
-      const url = `${process.env.NEXT_PUBLIC_GEOSEARCH}/direct?q=${value}&limit=10&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
+      const url = `${process.env.NEXT_PUBLIC_GEOSEARCH}/direct?q=${SearchQuery}&limit=10&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
       const res = await fetch(url);
       const data = await res.json();
       if (res.ok) {
@@ -64,23 +63,28 @@ const NavBar = (props) => {
                   onChange={(e) => {
                     setSearchQuery(e.target.value);
                     if (e.target.value.length > 2) {
-                      cityList(e.target.value);
+                      fetchCityList();
                     } else {
                       router.push(`/`);
                     }
                   }}
                   onKeyUp={(e) => {
                     if (e.key === "Enter") {
-                      router.push(
-                        `/weather/${CityList[0].name},${CityList[0].country}`,
-                      );
-                      setSearchQuery("");
-                      setCityList([]);
-                      setDropDown(false);
-                      setSearchQuery(CityList[0].name);
+                      if (CityList.length > 0) {
+                        router.push(
+                          `/weather/${CityList[0].name},${CityList[0].country}`,
+                        );
+                        setSearchQuery("");
+                        setCityList([]);
+                        setDropDown(false);
+                        setSearchQuery(CityList[0].name);
+                      } else {
+                        fetchCityList();
+                      }
                     }
                   }}
                 />
+                {/* Search List  */}
                 {SearchQuery && CityList.length > 0 && (
                   <div className={style.searchList}>
                     {CityList.map((City, index) => (
@@ -88,10 +92,16 @@ const NavBar = (props) => {
                         key={City.lat + index}
                         className={style.searchListItem}
                         onClick={() => {
-                          router.push(`/weather/${City.name},${City.country}`);
-                          setDropDown(false);
-                          setSearchQuery("");
-                          setCityList([]);
+                          if (CityList.length > 0) {
+                            router.push(
+                              `/weather/${City.name},${City.country}`,
+                            );
+                            setDropDown(false);
+                            setSearchQuery("");
+                            setCityList([]);
+                          } else {
+                            fetchCityList();
+                          }
                         }}
                       >
                         {City.name}, {City.country}
