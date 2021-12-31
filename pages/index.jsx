@@ -1,10 +1,18 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import MainPage from "../components/home/index";
+import Loader from "../components/loader/Loader";
 import MainCard from "../components/weather/maincard";
 import { fetchIpLocationWeather } from "../utility/utility";
 
-export default function Home({ data }) {
+export default function Home() {
+  const [WeatherData, setWeatherData] = useState();
+  //
+  useEffect(async () => {
+    const data = await fetchIpLocationWeather();
+    setWeatherData(data);
+  }, []);
   return (
     <div>
       <Head>
@@ -13,7 +21,8 @@ export default function Home({ data }) {
       </Head>
       <Container>
         <h1 className="text-muted text-center mt-2">Weather near you</h1>
-        <MainCard data={data} />
+
+        {WeatherData ? <MainCard data={WeatherData} /> : <Loader />}
       </Container>
       <div>
         <MainPage />
@@ -22,12 +31,11 @@ export default function Home({ data }) {
   );
 }
 
-export const getServerSideProps = async (ctx) => {
-  const data = await fetchIpLocationWeather();
-  // console.log(data);
-  return {
-    props: {
-      data: data,
-    },
-  };
-};
+// export const getServerSideProps = async (ctx) => {
+//   const data = await fetchIpLocationWeather();
+//   return {
+//     props: {
+//       data: data,
+//     },
+//   };
+// };

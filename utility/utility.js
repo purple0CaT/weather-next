@@ -35,7 +35,7 @@ export const fetchIpLocationWeather = async () => {
         const dataLocation = await resLocation.json();
         // console.log(dataLocation);
         // fetch Weather
-        const weatherUrl = `${process.env.NEXT_PUBLIC_WEATHERURL}/weather?lat=${dataLocation.latitude}&lon=${dataLocation.longitude}&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
+        const weatherUrl = `${process.env.NEXT_PUBLIC_WEATHERURL}/weather?lat=${dataLocation.latitude}&lon=${dataLocation.longitude}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
         const fetchWeather = await fetch(weatherUrl);
         const weatherData = await fetchWeather.json();
         if (fetchWeather.ok) {
