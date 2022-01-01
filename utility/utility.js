@@ -26,10 +26,11 @@ export const fetchIpLocationWeather = async () => {
     if (resIp.ok) {
       const apiData = await resIp.json();
       // fetch ipLocation
-      const url2 = `https://ipwhois.app/json/${apiData.ip}`;
+      const url2 = `https://ipapi.co/${apiData.ip}/json/`;
       const resLocation = await fetch(url2);
       if (resLocation.ok) {
         const dataLocation = await resLocation.json();
+        // console.log(dataLocation)
         // fetch Weather
         const weatherUrl = `${process.env.NEXT_PUBLIC_WEATHERURL}/weather?lat=${dataLocation.latitude}&lon=${dataLocation.longitude}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
         const fetchWeather = await fetch(weatherUrl);
