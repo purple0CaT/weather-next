@@ -32,63 +32,59 @@ function MainPage() {
                       style.hoverCard
                     }
                   >
-                    <div className="d-flex justify-content-between">
+                    <div
+                      className="d-flex justify-content-between px-2"
+                      style={{
+                        boxShadow: "0 2px 4px rgba(128, 128, 128, 0.5)",
+                      }}
+                    >
                       <span>{dateFormat(new Date(W.dt * 1000), "HH:MM ")}</span>
                       <span>{dateFormat(new Date(W.dt * 1000), "d mmm")}</span>
                     </div>
-                    <div className="d-flex align-items-center justify-content-center">
-                      <Image
-                        src={`https://openweathermap.org/img/wn/${W.weather[0].icon}@2x.png`}
-                        alt={weather.description}
-                        className={style.imageWeather}
-                        height={100}
-                        width={100}
-                      />
-                    </div>
-                    <h5 className="m-0 text-muted">{W.name}</h5>
-                    <small>
-                      {W.weather[0].main}, {W.weather[0].description}
-                    </small>
-                    <span className="text-muted font-weight-bold text-right">
-                      {Math.floor(W.main.temp)}°C
-                    </span>
-                    <small>
-                      <small className="text-muted font-weight-bold">
-                        Feels like:
+                    <div className="px-2 d-flex flex-column">
+                      <div className="d-flex align-items-center justify-content-center">
+                        <Image
+                          src={`https://openweathermap.org/img/wn/${W.weather[0].icon}@2x.png`}
+                          alt={weather.description}
+                          className={style.imageWeather}
+                          height={100}
+                          width={100}
+                        />
+                      </div>
+                      <h5 className="m-0 text-muted">{W.name}</h5>
+                      <span className="text-muted font-weight-bold text-right">
+                        {Math.floor(W.main.temp)}°C
+                      </span>
+                      <small>
+                        {W.weather[0].main}, {W.weather[0].description}
                       </small>
-                      {Math.floor(W.main.feels_like)}°C
-                    </small>
-                    <small className="mr-2 my-1">
-                      <small className="text-muted font-weight-bold">
-                        Min:{" "}
-                      </small>
-                      {Math.floor(W.main.temp_min)}°C
-                    </small>
-                    <small>
-                      <small className="text-muted font-weight-bold">
-                        Max:{" "}
-                      </small>
-                      {Math.floor(W.main.temp_max)}°C
-                    </small>
-                    {/* WIND COL */}
-                    <div className="d-flex my-1 aling-items-between w-100">
                       <small>
                         <small className="text-muted font-weight-bold">
-                          Wind:{" "}
+                          Feels like:{" "}
                         </small>
-                        {W.wind.speed}m/s{" "}
+                        {Math.floor(W.main.feels_like)}°C
                       </small>
-                      <div
-                        className={
-                          "d-flex align-items-center justify-content-center ml-auto " +
-                          style.compasSM
-                        }
-                      >
-                        <FiNavigation2
-                          style={{
-                            transform: `rotate(${W.wind.deg}deg)`,
-                          }}
-                        />
+
+                      {/* WIND COL */}
+                      <div className="d-flex my-1 aling-items-between w-100">
+                        <small>
+                          <small className="text-muted font-weight-bold">
+                            Wind:{" "}
+                          </small>
+                          {W.wind.speed}m/s{" "}
+                        </small>
+                        <div
+                          className={
+                            "d-flex align-items-center justify-content-center ml-auto " +
+                            style.compass
+                          }
+                        >
+                          <FiNavigation2
+                            style={{
+                              transform: `rotate(${W.wind.deg}deg)`,
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
