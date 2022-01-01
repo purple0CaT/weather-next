@@ -26,28 +26,27 @@ export const fetchIpLocationWeather = async () => {
     if (resIp.ok) {
       const apiData = await resIp.json();
       // fetch ipLocation
-      const url2 = `https://ipapi.co/${apiData.ip}/json/`;
+      const url2 = `https://api.ip2loc.com/${process.env.NEXT_PUBLIC_LOCATIONAPIKEY}/${apiData.ip}?include=city,location_latitude,location_longitude`;
       const resLocation = await fetch(url2);
       if (resLocation.ok) {
         const dataLocation = await resLocation.json();
-        // console.log(dataLocation)
         // fetch Weather
-        const weatherUrl = `${process.env.NEXT_PUBLIC_WEATHERURL}/weather?lat=${dataLocation.latitude}&lon=${dataLocation.longitude}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
+        const weatherUrl = `${process.env.NEXT_PUBLIC_WEATHERURL}/weather?lat=${dataLocation.location_latitude}&lon=${dataLocation.location_longitude}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
         const fetchWeather = await fetch(weatherUrl);
         const weatherData = await fetchWeather.json();
         if (fetchWeather.ok) {
           return weatherData;
         } else {
-          // alert("Weather fetch error");
+          alert("Weather fetch error");
           console.log(fetchWeather);
         }
       } else {
-        // alert("Error fetching weather");
+        alert("Error fetching location");
         console.log(resLocation);
       }
     } else {
       console.log(resIp);
-      // alert("Error fetching ip");
+      alert("Error fetching ip");
     }
   } catch (error) {
     // alert("Error");
