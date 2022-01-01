@@ -24,7 +24,7 @@ function NavProf({ closeDropdown }) {
           <span className="text-dropdown">Profile</span>
         </div>
       </Link>
-      <Link href="/">
+      <Link passHref href="/">
         <div
           onClick={() => {
             dispatch(logOut());

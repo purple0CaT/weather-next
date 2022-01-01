@@ -30,6 +30,7 @@ const MyCord = () => {
           <>
             <div className="my-2 d-flex justify-content-center">
               <Link
+                passHref
                 href={`/weather/null?lat=${weathCoord.latitude}&lon=${weathCoord.longitude}`}
               >
                 <div className="navBtn">

@@ -22,7 +22,7 @@ function SearchHistory() {
           {weather.history &&
             weather.history.map((W) => (
               <div className="mx-auto" key={W.name + "3s3"}>
-                <Link href={`/weather/${W.name},${W.sys.country}`}>
+                <Link passHref href={`/weather/${W.name},${W.sys.country}`}>
                   <div className="d-flex justify-content-center align-items-center my-1">
                     <div className="navBtn d-flex justify-content-center align-items-center ">
                       <h6 className="m-0">

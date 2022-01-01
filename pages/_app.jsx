@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }) {
     <PersistGate persistor={store.__persistor}>
       <Head>
         {" "}
-        <link ref="shortcut icon" href="/public/favicon2.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar>
         {Loading && (
