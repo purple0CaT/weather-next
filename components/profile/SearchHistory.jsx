@@ -15,51 +15,45 @@ function SearchHistory() {
   const [IpLoc, setIpLoc] = useState();
   return (
     <div className={style.ipCard}>
-      {IpLoc ? (
-        <>
-          <div>
-            <h5 className="text-muted"></h5>
-            <span>
-              {IpLoc.country_name}, {IpLoc.state}, {IpLoc.city}, {IpLoc.postal}
-            </span>
-          </div>
-          <div className="d-flex justify-content-center mt-2">
-            <Map
-              lon={IpLoc.longitude}
-              lat={IpLoc.latitude}
-              profile={"profile"}
-            />
-          </div>
-        </>
-      ) : (
+      <div>
+        <h4 className="text-muted">History search</h4>
+        <hr />
         <div>
-          <div>
-            <button
-              className="navBtn"
-              onClick={() => dispatch(deleteHistory())}
-              style={{ color: "Brown", backgroundColor: "whitesmoke" }}
-            >
-              Delete history!
-            </button>
-          </div>
-          <hr />
-          <div>
-            {weather.history &&
-              weather.history.map((W) => (
-                <div className="mx-auto" key={W.name + "3s3"}>
-                  <Link
-                    href="/weather"
-                    onClick={() => dispatch(setSearch(W.name))}
-                    className=""
-                  >
-                    <h6>{W.name}</h6>
-                  </Link>
-                </div>
-              ))}
-          </div>
-          {/* <h2 className="text-muted">No data!</h2> */}
+          {weather.history &&
+            weather.history.map((W) => (
+              <div className="mx-auto" key={W.name + "3s3"}>
+                <Link href={`/weather/${W.name},${W.sys.country}`}>
+                  <div className="d-flex justify-content-center align-items-center my-1">
+                    <div className="navBtn d-flex justify-content-center align-items-center ">
+                      <h6 className="m-0">
+                        {W.name}, {W.sys.country}
+                      </h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
         </div>
-      )}
+        <div>
+          {weather.history.length > 0 ? (
+            <>
+              <hr />
+              <button
+                className="navBtn"
+                onClick={() => dispatch(deleteHistory())}
+                style={{ color: "Brown", backgroundColor: "whitesmoke" }}
+              >
+                Delete history!
+              </button>
+            </>
+          ) : (
+            <div>
+              {" "}
+              <h5 className="text-muted text-center">Empty!</h5>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

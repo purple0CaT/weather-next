@@ -1,5 +1,6 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { useEffect, useState } from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 //
 function getIcon(iconSize) {
@@ -12,6 +13,7 @@ function getIcon(iconSize) {
 }
 
 const Map = ({ lat, lon, profile }) => {
+  const [MapShow, setMapShow] = useState(true);
   const mapStyle = profile
     ? {
         width: "100%",
@@ -24,9 +26,15 @@ const Map = ({ lat, lon, profile }) => {
         overflow: "hidden",
         boxShadow: "0 2px 5px rgba(128, 128, 128, 0.329)",
       };
+  useEffect(() => {
+    setMapShow(false);
+    setTimeout(() => {
+      setMapShow(true);
+    }, 1);
+  }, [lat]);
   return (
     <>
-      {lat && (
+      {lat && MapShow && (
         <div className="position-relative" style={mapStyle}>
           <MapContainer
             center={[lat, lon]}

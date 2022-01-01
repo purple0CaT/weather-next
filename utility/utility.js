@@ -1,13 +1,20 @@
-export const fetchWeather = async ({ cityName }) => {
+export const fetchWeather = async ({ cityName, cord }) => {
   try {
-    const url = `${process.env.NEXT_PUBLIC_WEATHERURL}/weather?q=${cityName}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
+    const url =
+      cityName === "null"
+        ? `${process.env.NEXT_PUBLIC_WEATHERURL}/weather?lat=${cord[0]}&lon=${cord[1]}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`
+        : `${process.env.NEXT_PUBLIC_WEATHERURL}/weather?q=${cityName}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
     const res = await fetch(url);
     const data = await res.json();
+    // console.log(url);
     if (!res.ok) {
       throw Error("Error");
     }
     //
-    const urlForecast = `${process.env.NEXT_PUBLIC_WEATHERURL}/forecast?q=${cityName}&units=metric&exclude=daily&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
+    const urlForecast =
+      cityName === "null"
+        ? `${process.env.NEXT_PUBLIC_WEATHERURL}/forecast?lat=${cord[0]}&lon=${cord[1]}&units=metric&exclude=daily&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`
+        : `${process.env.NEXT_PUBLIC_WEATHERURL}/forecast?q=${cityName}&units=metric&exclude=daily&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
     const resFor = await fetch(urlForecast);
     const multipData = await resFor.json();
     if (!resFor.ok) {

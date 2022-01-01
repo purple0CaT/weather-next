@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import Head from "next/head";
 import { Router } from "next/router";
 import { useState } from "react";
 import { useStore } from "react-redux";
@@ -23,9 +24,13 @@ function MyApp({ Component, pageProps }) {
   });
   return (
     <PersistGate persistor={store.__persistor}>
+      <Head>
+        {" "}
+        <link ref="shortcut icon" href="/public/favicon2.ico" />
+      </Head>
       <NavBar>
         {Loading && (
-          <div style={{ position: "absolute" , width:"100%"}}>
+          <div style={{ position: "absolute", width: "100%" }}>
             <Loader />
           </div>
         )}

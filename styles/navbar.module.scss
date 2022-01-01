@@ -97,7 +97,19 @@
 .profileName button:active {
   transform: scale(1);
   border: unset;
+  white-space: nowrap;
 }
+.profileNameBtnSize {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10rem;
+}
+@media only screen and (max-width: 550px) {
+  .profileNameBtnSize {
+    max-width: 3.5rem;
+  }
+}
+
 /* name input */
 .nameInput {
   height: 2rem !important;
@@ -150,7 +162,10 @@
   left: 1 rem;
   padding: 0.4rem 1rem;
   border-radius: 10px;
+  z-index: 999;
   background-color: #aaaaaa;
+  box-shadow: 0 3px 5px grey;
+  min-width: 100%;
 }
 .searchListItem {
   border-bottom: 1px solid rgb(218, 218, 218);

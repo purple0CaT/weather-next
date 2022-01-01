@@ -35,7 +35,10 @@ export const setCleanAll = () => {
     dispatch({ type: "WEATHER_FDAYS_ADD", payload: {} });
   };
 };
-
+export const addHistory = (weather) => ({
+  type: "WEATHER_ADD_HISTORY",
+  payload: weather,
+});
 // SEARCH BY COORDINATES
 export const setCoords = (cords) => {
   return async (dispatch, getState) => {
@@ -123,4 +126,4 @@ export const runSearch = () => {
   // };
 };
 
-export const positionSearch = () => {};
+// export const positionSearch = () => {};

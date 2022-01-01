@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { FiNavigation2, FiSunrise, FiSunset } from "react-icons/fi";
 import style from "./weather.module.css";
-
 const Map = dynamic(() => import("../map/Map"), {
   ssr: false,
 });
@@ -166,9 +165,7 @@ const MainCard = ({ data }) => {
             </div>
           </Col>
           <Col xs="12" md="5" className="w-100 h-100 p-2">
-            <div>
-              <Map lat={data.coord.lat} lon={data.coord.lon} />
-            </div>
+            <Map lat={data.coord.lat} lon={data.coord.lon} />
           </Col>
         </>
       )}

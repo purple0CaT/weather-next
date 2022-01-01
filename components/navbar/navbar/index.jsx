@@ -23,9 +23,11 @@ const NavBar = (props) => {
   const [CityList, setCityList] = useState([]);
   const [SearchQuery, setSearchQuery] = useState("");
   //
-  const fetchCityList = async () => {
+  const fetchCityList = async (value) => {
     try {
-      const url = `${process.env.NEXT_PUBLIC_GEOSEARCH}/direct?q=${SearchQuery}&limit=10&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
+      const url = `${process.env.NEXT_PUBLIC_GEOSEARCH}/direct?q=${
+        value ? value : SearchQuery
+      }&limit=10&appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`;
       const res = await fetch(url);
       const data = await res.json();
       if (res.ok) {
@@ -49,7 +51,13 @@ const NavBar = (props) => {
         <Container>
           <Row className={style.navBar}>
             <Col xs="6" md="4" className="d-flex align-items-center my-1">
-              <Link passHref href="/" onClick={(x) => dispatch(setCleanAll())}>
+              <Link
+                passHref
+                href="/"
+                onClick={() => {
+                  setSearchQuery("");
+                }}
+              >
                 <div className={"mr-3 " + style.navIcon}>
                   <AiFillHome size="1.8rem" />
                 </div>
@@ -62,10 +70,11 @@ const NavBar = (props) => {
                   placeholder="...search"
                   onChange={(e) => {
                     setSearchQuery(e.target.value);
-                    if (e.target.value.length > 2) {
-                      fetchCityList();
-                    } else {
+                    if (e.target.value.length === 0) {
                       router.push(`/`);
+                    }
+                    if (e.target.value.length > 2) {
+                      fetchCityList(e.target.value);
                     }
                   }}
                   onKeyUp={(e) => {
@@ -79,7 +88,7 @@ const NavBar = (props) => {
                         setDropDown(false);
                         setSearchQuery(CityList[0].name);
                       } else {
-                        fetchCityList();
+                        fetchCityList(e.target.value);
                       }
                     }
                   }}
@@ -153,7 +162,9 @@ const NavBar = (props) => {
                         } ${router.route === "/profile" && "selectedNavb"}`}
                         onClick={() => setDropDown(!DropDown)}
                       >
-                        <h5 className="my-0">{user.name}</h5>{" "}
+                        <h5 className={`my-0 ${style.profileNameBtnSize}`}>
+                          {user.name}
+                        </h5>{" "}
                       </div>
                       <div>
                         {DropDown && <NavProf closeDropdown={closeDropdown} />}

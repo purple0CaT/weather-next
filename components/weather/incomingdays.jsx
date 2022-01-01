@@ -11,6 +11,7 @@ const IncomingDays = ({ data, multipData }) => {
   return (
     <>
       <br />
+      <h4 className="text-center text-muted"> Weather in 5 days</h4>
       <div className={"mb-3 " + style.mainCards}>
         {multipData.list &&
           multipData.list.map((W) => (
@@ -18,14 +19,28 @@ const IncomingDays = ({ data, multipData }) => {
               className={"d-flex flex-column " + style.smallCard}
               key={W.main.temp + W.dt}
             >
+              <div
+                className="d-flex justify-content-between mb-1 px-2"
+                style={{
+                  backgroundColor: "rgba(128, 128, 128, 0.2)",
+                  boxShadow: "0 2px 5px rgba(128, 128, 128, 0.5)",
+                }}
+              >
+                <span>{dateFormat(new Date(W.dt * 1000), "d mmm")}</span>
+                <span className="font-weight-bold text-info">
+                  {dateFormat(new Date(W.dt * 1000), "HH:MM ")}
+                </span>
+              </div>
               <div className="p-1 d-flex flex-column">
-                <Image
-                  src={`https://openweathermap.org/img/wn/${W.weather[0].icon}@2x.png`}
-                  alt=""
-                  className="imageWeather"
-                  height={100}
-                  width={100}
-                />
+                <div className="d-flex align-items-center justify-content-center">
+                  <Image
+                    src={`https://openweathermap.org/img/wn/${W.weather[0].icon}@2x.png`}
+                    alt=""
+                    className="imageWeather"
+                    height={100}
+                    width={100}
+                  />
+                </div>
                 <span className="text-muted font-weight-bold text-right">
                   {Math.floor(W.main.temp)}°C
                 </span>
@@ -63,14 +78,6 @@ const IncomingDays = ({ data, multipData }) => {
                     />
                   </div>
                 </div>
-              </div>
-
-              <div
-                className="d-flex justify-content-between mt-auto px-2 mb-2"
-                style={{ backgroundColor: "rgba(128, 128, 128, 0.2)" }}
-              >
-                <span>{dateFormat(new Date(W.dt * 1000), "d mmm")}</span>
-                <span>{dateFormat(new Date(W.dt * 1000), "HH:MM ")}</span>
               </div>
             </div>
           ))}

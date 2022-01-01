@@ -30,15 +30,7 @@ const MyCord = () => {
           <>
             <div className="my-2 d-flex justify-content-center">
               <Link
-                href="/weather"
-                onClick={() =>
-                  dispatch(
-                    setCoords({
-                      lon: weathCoord.longitude,
-                      lat: weathCoord.latitude,
-                    }),
-                  )
-                }
+                href={`/weather/null?lat=${weathCoord.latitude}&lon=${weathCoord.longitude}`}
               >
                 <div className="navBtn">
                   <span>Check the weather near me</span>
@@ -64,13 +56,13 @@ const MyCord = () => {
                   dispatch(clearCoord());
                 }}
               >
-                <span>Delete my curent location</span>
+                <span>Delete my location</span>
               </div>
             </div>
           </>
         )}
         {!weathCoord.latitude && (
-          <div className="my-2">
+          <div className="my-2 d-flex justify-content-center">
             <div className="navBtn" onClick={() => addCordinates()}>
               <span>Add my curent loc</span>
             </div>
