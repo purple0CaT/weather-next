@@ -2,6 +2,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import style from "./../../styles/map.module.scss";
 //
 function getIcon(iconSize) {
   return L.icon({
@@ -14,6 +15,7 @@ function getIcon(iconSize) {
 
 const Map = ({ lat, lon, profile }) => {
   const [MapShow, setMapShow] = useState(true);
+  const [MapType, setMapType] = useState("clouds_new");
   const mapStyle = profile
     ? {
         width: "100%",
@@ -31,20 +33,91 @@ const Map = ({ lat, lon, profile }) => {
     setTimeout(() => {
       setMapShow(true);
     }, 1);
-  }, [lat]);
+  }, [lat, MapType]);
   return (
     <>
       {lat && MapShow && (
         <div className="position-relative" style={mapStyle}>
+          <div className={style.mapMenu}>
+            <div className="d-flex align-items-center">
+              <input
+                checked={MapType === "clouds_new" ? true : false}
+                type="radio"
+                id="clouds"
+                name="map-type"
+                value="clouds_new"
+                onClick={() => setMapType("clouds_new")}
+              />
+              <label className="m-0 ml-1" for="clouds">
+                Clouds
+              </label>
+            </div>
+            <div className="d-flex align-items-center">
+              <input
+                checked={MapType === "precipitation_new" ? true : false}
+                type="radio"
+                id="precipitation"
+                name="map-type"
+                value="precipitation_new"
+                onClick={() => setMapType("precipitation_new")}
+              />
+              <label className="m-0 ml-1" for="precipitation">
+                Precipitation
+              </label>
+            </div>
+            <div className="d-flex align-items-center">
+              <input
+                checked={MapType === "pressure_new" ? true : false}
+                type="radio"
+                id="Pressure"
+                name="map-type"
+                value="pressure_new"
+                onClick={() => setMapType("pressure_new")}
+              />
+              <label className="m-0 ml-1" for="Pressure">
+                Pressure
+              </label>
+            </div>
+            <div className="d-flex align-items-center">
+              <input
+                checked={MapType === "wind_new" ? true : false}
+                type="radio"
+                id="wind"
+                name="map-type"
+                value="wind_new"
+                onClick={() => setMapType("wind_new")}
+              />
+              <label className="m-0 ml-1" for="wind">
+                Wind
+              </label>
+            </div>
+            <div className="d-flex align-items-center">
+              <input
+                checked={MapType === "temp_new" ? true : false}
+                type="radio"
+                id="temp"
+                name="map-type"
+                value="temp_new"
+                onClick={() => setMapType("temp_new")}
+              />
+              <label className="m-0 ml-1" for="temp">
+                Temperature
+              </label>
+            </div>
+          </div>
           <MapContainer
             center={[lat, lon]}
-            zoom={10}
+            zoom={5}
             scrollWheelZoom={false}
             style={{ minWidth: "20vh", minHeight: "27vh" }}
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png"
+            />
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url={`https://tile.openweathermap.org/map/${MapType}/{z}/{x}/{y}.png?appid=${process.env.NEXT_PUBLIC_WEATHERAPI}`}
             />
             <Marker position={[lat, lon]} icon={getIcon(30)}></Marker>
             {/* {profile && <Circle center={[lat, lon]} radius={2000} />} */}

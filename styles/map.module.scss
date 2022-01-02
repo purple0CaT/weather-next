@@ -1,0 +1,10 @@
+.mapMenu {
+  position: absolute;
+  z-index: 999;
+  right: 0;
+  top: 0;
+  padding: 0.6rem 0.2rem 0.2rem 0.2rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
