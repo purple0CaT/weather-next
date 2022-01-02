@@ -9,9 +9,11 @@ import { fetchIpLocationWeather } from "../utility/utility";
 export default function Home() {
   const [WeatherData, setWeatherData] = useState();
   //
-  useEffect(async () => {
-    const data = await fetchIpLocationWeather();
-    setWeatherData(data);
+  useEffect(() => {
+    async () => {
+      const data = await fetchIpLocationWeather();
+      setWeatherData(data);
+    };
   }, []);
   return (
     <div>

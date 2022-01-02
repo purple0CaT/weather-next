@@ -48,7 +48,7 @@ const Map = ({ lat, lon, profile }) => {
                 value="clouds_new"
                 onClick={() => setMapType("clouds_new")}
               />
-              <label className="m-0 ml-1" for="clouds">
+              <label className="m-0 ml-1" htmlFor="clouds">
                 Clouds
               </label>
             </div>
@@ -61,7 +61,7 @@ const Map = ({ lat, lon, profile }) => {
                 value="precipitation_new"
                 onClick={() => setMapType("precipitation_new")}
               />
-              <label className="m-0 ml-1" for="precipitation">
+              <label className="m-0 ml-1" htmlFor="precipitation">
                 Precipitation
               </label>
             </div>
@@ -74,7 +74,7 @@ const Map = ({ lat, lon, profile }) => {
                 value="pressure_new"
                 onClick={() => setMapType("pressure_new")}
               />
-              <label className="m-0 ml-1" for="Pressure">
+              <label className="m-0 ml-1" htmlFor="Pressure">
                 Pressure
               </label>
             </div>
@@ -87,7 +87,7 @@ const Map = ({ lat, lon, profile }) => {
                 value="wind_new"
                 onClick={() => setMapType("wind_new")}
               />
-              <label className="m-0 ml-1" for="wind">
+              <label className="m-0 ml-1" htmlFor="wind">
                 Wind
               </label>
             </div>
@@ -100,7 +100,7 @@ const Map = ({ lat, lon, profile }) => {
                 value="temp_new"
                 onClick={() => setMapType("temp_new")}
               />
-              <label className="m-0 ml-1" for="temp">
+              <label className="m-0 ml-1" htmlFor="temp">
                 Temperature
               </label>
             </div>
