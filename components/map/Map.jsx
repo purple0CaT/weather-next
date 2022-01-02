@@ -46,7 +46,7 @@ const Map = ({ lat, lon, profile }) => {
                 id="clouds"
                 name="map-type"
                 value="clouds_new"
-                onClick={() => setMapType("clouds_new")}
+                onChange={() => setMapType("clouds_new")}
               />
               <label className="m-0 ml-1" htmlFor="clouds">
                 <small>Clouds</small>
@@ -59,7 +59,8 @@ const Map = ({ lat, lon, profile }) => {
                 id="precipitation"
                 name="map-type"
                 value="precipitation_new"
-                onClick={() => setMapType("precipitation_new")}
+                onChange={() => setMapType("precipitation_new")}
+                style={{ backgroundColor: "grey" }}
               />
               <label className="m-0 ml-1" htmlFor="precipitation">
                 <small>Precipitation</small>
@@ -72,7 +73,7 @@ const Map = ({ lat, lon, profile }) => {
                 id="Pressure"
                 name="map-type"
                 value="pressure_new"
-                onClick={() => setMapType("pressure_new")}
+                onChange={() => setMapType("pressure_new")}
               />
               <label className="m-0 ml-1" htmlFor="Pressure">
                 <small>Pressure</small>
@@ -85,7 +86,7 @@ const Map = ({ lat, lon, profile }) => {
                 id="wind"
                 name="map-type"
                 value="wind_new"
-                onClick={() => setMapType("wind_new")}
+                onChange={() => setMapType("wind_new")}
               />
               <label className="m-0 ml-1" htmlFor="wind">
                 <small>Wind</small>
@@ -98,7 +99,7 @@ const Map = ({ lat, lon, profile }) => {
                 id="temp"
                 name="map-type"
                 value="temp_new"
-                onClick={() => setMapType("temp_new")}
+                onChange={() => setMapType("temp_new")}
               />
               <label className="m-0 ml-1" htmlFor="temp">
                 <small>Temperature</small>

@@ -106,7 +106,7 @@ const MainCard = ({ data }) => {
                 <br />
                 <span>
                   <small className="text-muted font-weight-bold">
-                    Feels like:
+                    Feels like:{" "}
                   </small>
                   {Math.floor(data.main.feels_like)}°C
                 </span>
