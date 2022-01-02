@@ -10,10 +10,11 @@ export default function Home() {
   const [WeatherData, setWeatherData] = useState();
   //
   useEffect(() => {
-    async () => {
+    async function fetch() {
       const data = await fetchIpLocationWeather();
       setWeatherData(data);
-    };
+    }
+    fetch();
   }, []);
   return (
     <div>

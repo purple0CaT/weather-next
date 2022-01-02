@@ -7,9 +7,7 @@ import { BsSearch } from "react-icons/bs";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addTheName,
-  setCleanAll,
-  setSearch,
+  addTheName
 } from "../../../redux/actions/actions";
 import style from "../../../styles/navbar.module.scss";
 import NavProf from "./NavProf";

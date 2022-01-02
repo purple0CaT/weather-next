@@ -49,7 +49,7 @@ const Map = ({ lat, lon, profile }) => {
                 onClick={() => setMapType("clouds_new")}
               />
               <label className="m-0 ml-1" htmlFor="clouds">
-                Clouds
+                <small>Clouds</small>
               </label>
             </div>
             <div className="d-flex align-items-center">
@@ -62,7 +62,7 @@ const Map = ({ lat, lon, profile }) => {
                 onClick={() => setMapType("precipitation_new")}
               />
               <label className="m-0 ml-1" htmlFor="precipitation">
-                Precipitation
+                <small>Precipitation</small>
               </label>
             </div>
             <div className="d-flex align-items-center">
@@ -75,7 +75,7 @@ const Map = ({ lat, lon, profile }) => {
                 onClick={() => setMapType("pressure_new")}
               />
               <label className="m-0 ml-1" htmlFor="Pressure">
-                Pressure
+                <small>Pressure</small>
               </label>
             </div>
             <div className="d-flex align-items-center">
@@ -88,7 +88,7 @@ const Map = ({ lat, lon, profile }) => {
                 onClick={() => setMapType("wind_new")}
               />
               <label className="m-0 ml-1" htmlFor="wind">
-                Wind
+                <small>Wind</small>
               </label>
             </div>
             <div className="d-flex align-items-center">
@@ -101,7 +101,7 @@ const Map = ({ lat, lon, profile }) => {
                 onClick={() => setMapType("temp_new")}
               />
               <label className="m-0 ml-1" htmlFor="temp">
-                Temperature
+                <small>Temperature</small>
               </label>
             </div>
           </div>
@@ -113,7 +113,7 @@ const Map = ({ lat, lon, profile }) => {
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png"
+              url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
             />
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
