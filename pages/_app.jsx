@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useStore } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import Loader from "../components/loader/Loader";
-import NavBar from "../components/navbar/navbar";
+import NavBar from "../components/navbar/index";
 import { wrapper } from "../redux/store/store";
 import "../styles/globals.css";
 

@@ -6,10 +6,8 @@ import { AiFillHome } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addTheName
-} from "../../../redux/actions/actions";
-import style from "../../../styles/navbar.module.scss";
+import { addTheName } from "../../redux/actions/actions";
+import style from "../../styles/navbar.module.scss";
 import NavProf from "./NavProf";
 //
 const NavBar = (props) => {
