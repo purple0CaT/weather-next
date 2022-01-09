@@ -20,16 +20,17 @@ const IncomingDays = ({ data, multipData }) => {
               key={W.main.temp + W.dt}
             >
               <div
-                className="d-flex justify-content-between mb-1 px-2"
+                className="d-flex justify-content-between align-items-baseline mb-1 px-2"
                 style={{
                   backgroundColor: "rgba(128, 128, 128, 0.2)",
                   boxShadow: "0 2px 5px rgba(128, 128, 128, 0.5)",
                 }}
               >
-                <span>{dateFormat(new Date(W.dt * 1000), "d mmm")}</span>
-                <span className="font-weight-bold text-info">
+                <small>{dateFormat(new Date(W.dt * 1000), "d mmm")}</small>
+                <span> {dateFormat(new Date(W.dt * 1000), "ddd")}</span>
+                <small className="font-weight-bold text-info">
                   {dateFormat(new Date(W.dt * 1000), "HH:MM ")}
-                </span>
+                </small>
               </div>
               <div className="p-1 d-flex flex-column">
                 <div className="d-flex align-items-center justify-content-center">

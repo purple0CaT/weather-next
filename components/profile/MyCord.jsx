@@ -28,7 +28,7 @@ const MyCord = () => {
       <div className={"p-1 my-1  text-center " + styles.profCard}>
         {weathCoord.latitude && (
           <>
-            <div className="my-2 d-flex justify-content-center">
+            <div className="my-2 d-flex justify-content-around">
               <Link
                 passHref
                 href={`/weather/null?lat=${weathCoord.latitude}&lon=${weathCoord.longitude}`}
@@ -37,6 +37,9 @@ const MyCord = () => {
                   <span>Check the weather near me</span>
                 </div>
               </Link>
+              <div className="navBtn" onClick={() => addCordinates()}>
+                <span>Update my curent loc</span>
+              </div>
             </div>
             <div className="d-flex justify-content-center my-2">
               <Map
