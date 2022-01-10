@@ -17,7 +17,7 @@ function MainPage() {
           <h5 className="text-muted text-center">Your latest searches</h5>
           <Row>
             {weather.history.map((W) => (
-              <Col xs="6" md="2" className="my-1" key={W.name + "asd"}>
+              <Col xs="6" lg="2" md="3" className="my-1" key={W.name + "asd"}>
                 <Link
                   passHref
                   href={`/weather/${W.name},${W.sys.country}`}
@@ -33,13 +33,14 @@ function MainPage() {
                     }
                   >
                     <div
-                      className="d-flex justify-content-between px-2"
+                      className="d-flex justify-content-between align-items-baseline px-2"
                       style={{
                         boxShadow: "0 2px 4px rgba(128, 128, 128, 0.5)",
                       }}
                     >
-                      <span>{dateFormat(new Date(W.dt * 1000), "HH:MM ")}</span>
-                      <span>{dateFormat(new Date(W.dt * 1000), "d mmm")}</span>
+                      <small>{dateFormat(new Date(W.dt * 1000), "HH:MM ")}</small>
+                      <span className="font-weight-bold">{dateFormat(new Date(W.dt * 1000), "d")}</span>
+                      <span>{dateFormat(new Date(W.dt * 1000), "mmm")}</span>
                     </div>
                     <div className="px-2 d-flex flex-column">
                       <div className="d-flex align-items-center justify-content-center">

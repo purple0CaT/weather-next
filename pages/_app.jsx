@@ -6,6 +6,7 @@ import { useStore } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import Loader from "../components/loader/Loader";
 import NavBar from "../components/navbar/index";
+import Footer from "../components/footer//Footer";
 import { wrapper } from "../redux/store/store";
 import "../styles/globals.css";
 
@@ -36,6 +37,7 @@ function MyApp({ Component, pageProps }) {
         )}
         <Component {...pageProps} />
       </NavBar>
+      <Footer />
     </PersistGate>
   );
 }

@@ -3,6 +3,7 @@ import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import style from "./../../styles/map.module.scss";
+import MapSideBar from "./MapSideBar";
 //
 function getIcon(iconSize) {
   return L.icon({
@@ -28,6 +29,11 @@ const Map = ({ lat, lon, profile }) => {
         overflow: "hidden",
         boxShadow: "0 2px 5px rgba(128, 128, 128, 0.5)",
       };
+  //
+  const handleMapType = (value) => {
+    setMapType(value);
+  };
+  //
   useEffect(() => {
     setMapShow(false);
     setTimeout(() => {
@@ -39,72 +45,7 @@ const Map = ({ lat, lon, profile }) => {
       {lat && MapShow && (
         <div className="position-relative" style={mapStyle}>
           <div className={style.mapMenu}>
-            <div className="d-flex align-items-center">
-              <input
-                checked={MapType === "clouds_new" ? true : false}
-                type="radio"
-                id="clouds"
-                name="map-type"
-                value="clouds_new"
-                onChange={() => setMapType("clouds_new")}
-              />
-              <label className="m-0 ml-1" htmlFor="clouds">
-                <small>Clouds</small>
-              </label>
-            </div>
-            <div className="d-flex align-items-center">
-              <input
-                checked={MapType === "precipitation_new" ? true : false}
-                type="radio"
-                id="precipitation"
-                name="map-type"
-                value="precipitation_new"
-                onChange={() => setMapType("precipitation_new")}
-                style={{ backgroundColor: "grey" }}
-              />
-              <label className="m-0 ml-1" htmlFor="precipitation">
-                <small>Precipitation</small>
-              </label>
-            </div>
-            <div className="d-flex align-items-center">
-              <input
-                checked={MapType === "pressure_new" ? true : false}
-                type="radio"
-                id="Pressure"
-                name="map-type"
-                value="pressure_new"
-                onChange={() => setMapType("pressure_new")}
-              />
-              <label className="m-0 ml-1" htmlFor="Pressure">
-                <small>Pressure</small>
-              </label>
-            </div>
-            <div className="d-flex align-items-center">
-              <input
-                checked={MapType === "wind_new" ? true : false}
-                type="radio"
-                id="wind"
-                name="map-type"
-                value="wind_new"
-                onChange={() => setMapType("wind_new")}
-              />
-              <label className="m-0 ml-1" htmlFor="wind">
-                <small>Wind</small>
-              </label>
-            </div>
-            <div className="d-flex align-items-center">
-              <input
-                checked={MapType === "temp_new" ? true : false}
-                type="radio"
-                id="temp"
-                name="map-type"
-                value="temp_new"
-                onChange={() => setMapType("temp_new")}
-              />
-              <label className="m-0 ml-1" htmlFor="temp">
-                <small>Temperature</small>
-              </label>
-            </div>
+            <MapSideBar MapType={MapType} setMapType={handleMapType} />
           </div>
           <MapContainer
             center={[lat, lon]}
