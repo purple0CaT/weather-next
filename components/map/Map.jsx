@@ -26,7 +26,7 @@ const Map = ({ lat, lon, profile }) => {
         width: "100%",
         borderRadius: "20px",
         overflow: "hidden",
-        boxShadow: "0 2px 5px rgba(128, 128, 128, 0.329)",
+        boxShadow: "0 2px 5px rgba(128, 128, 128, 0.5)",
       };
   useEffect(() => {
     setMapShow(false);

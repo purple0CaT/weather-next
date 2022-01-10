@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Col, Container, FormControl, Row } from "react-bootstrap";
+import { Col, Container, FormControl, Row, Spinner } from "react-bootstrap";
 import { AiFillHome } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import OutsideClickHandler from "react-outside-click-handler";
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTheName } from "../../redux/actions/actions";
 import style from "../../styles/navbar.module.scss";
 import NavProf from "./NavProf";
+import { FiDelete } from "react-icons/fi";
 //
 const NavBar = (props) => {
   const user = useSelector((state) => state.user);
@@ -18,8 +19,10 @@ const NavBar = (props) => {
   const [userName, setuserName] = useState("");
   const [CityList, setCityList] = useState([]);
   const [SearchQuery, setSearchQuery] = useState("");
+  const [QueryLoader, setQueryLoader] = useState(false);
   //
   const fetchCityList = async (value) => {
+    setQueryLoader(true);
     try {
       const url = `${process.env.NEXT_PUBLIC_GEOSEARCH}/direct?q=${
         value ? value : SearchQuery
@@ -28,10 +31,13 @@ const NavBar = (props) => {
       const data = await res.json();
       if (res.ok) {
         setCityList(data);
+        setQueryLoader(false);
       } else {
+        setQueryLoader(false);
         alert("Error");
       }
     } catch (error) {
+      setQueryLoader(false);
       alert("Error");
       console.log(error);
     }
@@ -113,6 +119,21 @@ const NavBar = (props) => {
                       </div>
                     ))}
                   </div>
+                )}
+                {QueryLoader ? (
+                  <div className="mr-2 my-auto">
+                    <Spinner animation="border" size="sm" />
+                  </div>
+                ) : (
+                  SearchQuery && (
+                    <div
+                      className="d-flex align-items-center justify-content-center mr-2"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setSearchQuery("")}
+                    >
+                      <FiDelete size={20} />
+                    </div>
+                  )
                 )}
               </div>
             </Col>
