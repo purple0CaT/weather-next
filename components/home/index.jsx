@@ -13,7 +13,7 @@ function MainPage() {
     <Container>
       {weather.history?.length > 0 && (
         <>
-          <hr />{" "}
+          <hr />
           <h5 className="text-muted text-center">Your latest searches</h5>
           <Row>
             {weather.history.map((W) => (
@@ -38,8 +38,12 @@ function MainPage() {
                         boxShadow: "0 2px 4px rgba(128, 128, 128, 0.5)",
                       }}
                     >
-                      <small>{dateFormat(new Date(W.dt * 1000), "HH:MM ")}</small>
-                      <span className="font-weight-bold">{dateFormat(new Date(W.dt * 1000), "d")}</span>
+                      <small>
+                        {dateFormat(new Date(W.dt * 1000), "HH:MM ")}
+                      </small>
+                      <span className="font-weight-bold">
+                        {dateFormat(new Date(W.dt * 1000), "d")}
+                      </span>
                       <span>{dateFormat(new Date(W.dt * 1000), "mmm")}</span>
                     </div>
                     <div className="px-2 d-flex flex-column">
