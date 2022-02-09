@@ -33,7 +33,6 @@ function CityWeather({ data }) {
             <MainCard data={data.data} />{" "}
           </Col>
           <Col xs="12" className="px-1">
-            {" "}
             <IncomingDays data={data.data} multipData={data.multipData} />{" "}
           </Col>
         </Row>

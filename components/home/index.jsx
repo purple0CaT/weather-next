@@ -96,7 +96,7 @@ function MainPage() {
                 </Link>
               </Col>
             ))}
-          </Row>{" "}
+          </Row>
         </>
       )}
     </Container>
